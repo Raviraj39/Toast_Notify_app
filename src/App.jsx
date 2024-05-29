@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import First from './assets/Components/First'
 import Second from './assets/Components/Second';
 import Third from './assets/Components/Third';
+import Footer from './assets/Components/Footer';
 
 function App() {
  
@@ -19,6 +20,7 @@ function App() {
         <Route path="/component-3"  element={<Third/>}/>
       </Routes>
       </Router>
+      <Footer/>
     </>
   )
 }
