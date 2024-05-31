@@ -26,9 +26,8 @@ const First = () => {
 			</button>
 		</div>
 		<div>
-			{/* {list.map((i)=><p>hey dekun {i}</p>
-			)}  */}
-			<Toast toastlist={list} setList={setlist} time={time}  isCountDown={true}/>
+			
+			<Toast toastlist={list} setList={setlist} time={time}  isCountDown={true} First="first"/>
 			
 		</div>
 	</section>

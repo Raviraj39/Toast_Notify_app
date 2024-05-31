@@ -1,6 +1,6 @@
 import { useCallback ,useEffect,useState } from 'react';
 
-const Toast = ({ toastlist, setList, time, isCountDown,msg}) => {
+const Toast = ({ toastlist, setList, time, isCountDown,msg }) => {
 	const [count, setCount] = useState(time/1000);
   const deleteToast = useCallback(id => {
     const toastListItem = toastlist.filter(e => e !== id);
@@ -13,7 +13,12 @@ const Toast = ({ toastlist, setList, time, isCountDown,msg}) => {
       if(n) {
 		if(isCountDown){
 			console.log("hey hi");
-			//api-call here
+			axios.get('https://api.knowmee.co/api/v1/master/get-country-list"')
+      .then(response => {
+        console.log(response.data);
+      }, error => {
+        console.log(error);
+      });
 		}
         deleteToast(toastlist[n-1]);
       }
@@ -25,8 +30,7 @@ const Toast = ({ toastlist, setList, time, isCountDown,msg}) => {
     return () => {
       clearInterval(interval);
     }
-  }, [toastlist, deleteToast]);
-
+  }, [toastlist, deleteToast,setList]);
 
 
   return (
@@ -38,12 +42,15 @@ const Toast = ({ toastlist, setList, time, isCountDown,msg}) => {
           >
             <button onClick={() => deleteToast(toast)}>X</button>
             <div>
-              {/* <p>{msg} hey dekun {toast} {count}</p> */}
-			  {((isCountDown) && ({toast}!=0)) ? <p>{toast} : 1</p>: <p>{msg} hey dekun {toast} {count}</p>
-			  }
+			  {((isCountDown) && ({toast}!=0)) ? <p>testing:{toast} </p>: <p>{msg}:{count} </p>}
             </div>
+             <div>
+              <p> </p>
+              </div>
           </div>
+          
         ))
+       
       }
       
     </div>

@@ -28,7 +28,7 @@ const Second = () => {
         onChange={(e) => setMsg(e.target.value)}/>
       <button onClick={() => addToast(msg)}>Show Custom Toast Message</button>
     
-      <Toast toastlist={toasts} msg={msg} />
+      <Toast toastlist={toasts} msg={msg} isCountDown={true} />
    
     <div>
      
