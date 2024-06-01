@@ -65,17 +65,17 @@ const Third = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <section className="comp3">
+    <section>
+      <div className="compo">
+      <p>Enter Countdown Time</p>
       <input
         value={seconds}
         onChange={(e) => setSeconds(e.target.value)}
         type="number"
-        className="input"
-        max={10}
-        min={0}
+        placeholder="Enter here"
       />
       <button onClick={handleButtonClick} className="btn">
-        Click
+        Start Timer
       </button>
 
       {remainingSeconds !== null && remainingSeconds > 0 && (
@@ -94,6 +94,7 @@ const Third = () => {
         paginate={paginate}
         currentPage={currentPage}
       />
+      </div>
     </section>
   );
 };

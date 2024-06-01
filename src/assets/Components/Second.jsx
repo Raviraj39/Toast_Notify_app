@@ -20,19 +20,17 @@ const Second = () => {
   }, [toasts, maxToasts]);
   return (
 	<section >
-    
-      <label >Enter Custom Toast Text</label>
+      <div className='compo'>
+      <p>Enter Custom Toast Text</p>
       <input 
       type="text"
         value={msg}
-        onChange={(e) => setMsg(e.target.value)}/>
-      <button onClick={() => addToast(msg)}>Show Custom Toast Message</button>
+        onChange={(e) => setMsg(e.target.value)} placeholder='Enter text'/>
+      <button onClick={() => addToast(msg)} className='btn'>Show Custom Toast Message</button>
     
       <Toast toastlist={toasts} msg={msg} isCountDown={true} />
    
-    <div>
-     
-    </div>
+      </div>
   </section>
   )
 }
