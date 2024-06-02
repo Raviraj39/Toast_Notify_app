@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Third = () => {
   const [seconds, setSeconds] = useState("");
@@ -43,16 +44,19 @@ const Third = () => {
     }, 1000);
   };
 
-  const fetchApi = async () => {
+   const fetchApi = async () => {
     try {
-      const response = await fetch("https://api.knowmee.co/api/v1/master/get-country-list");
-      if (!response.ok) {
+      const response = await axios.get("https://api.knowmee.co/api/v1/master/get-country-list");
+      if (response.status !== 200) {
         throw new Error("Failed to fetch countries");
       }
-      const data = await response.json();
-      console.log(data);
-      setCountries(data.response_data || data);  
-    
+      const data = response.data;
+      const api= data.responseData;
+       console.log('API Response:',api );
+      setCountries(api);
+      // setCountries(data);
+      console.log(countries)
+      
     } catch (error) {
       console.error("Error fetching countries:", error);
     }
@@ -64,6 +68,16 @@ const Third = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+   function prevpage(){
+      if(currentPage !== indexOfFirstCountries){
+        setCurrentPage(currentPage-1);
+      }
+  }
+  function nextpage(){
+      if(currentPage !== indexOfFirstCountries){
+        setCurrentPage(currentPage+1);
+      }
+  }
   return (
     <section>
       <div className="compo">
@@ -84,41 +98,18 @@ const Third = () => {
       <div className="grid-container">
         {currentCountries.map((country) => (
           <div key={country.country_id} className="card">
-            <h3>{country.country_name}</h3>
+            <p>{country.country_name}</p>
           </div>
         ))}
+       
       </div>
-      <Pagination
-        countriesPerPage={countriesPerPage}
-        totalCountries={countries.length}
-        paginate={paginate}
-        currentPage={currentPage}
-      />
+       <button onClick={prevpage}>Prev</button>
+        <button onClick={nextpage}>Next</button>
+      
       </div>
     </section>
   );
 };
 
-const Pagination = ({ countriesPerPage, totalCountries, paginate, currentPage }) => {
-  const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(totalCountries / countriesPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
-  return (
-    <nav>
-      <ul className="pagination">
-        {pageNumbers.map((number) => (
-          <li key={number} className={number === currentPage ? "active" : ""}>
-            <a onClick={() => paginate(number)} href="#!">
-              {number}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-};
 
 export default Third;

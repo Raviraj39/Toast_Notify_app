@@ -108,3 +108,28 @@ footer{
   	padding: 20px 0px;
 	text-align: center;
 }
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  .pagination li.active a {
+    font-weight: bold;
+  }
+  
+  .pagination li a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .pagination li a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
