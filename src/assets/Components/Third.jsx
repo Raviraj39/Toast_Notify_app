@@ -7,6 +7,7 @@ const Third = () => {
   const [countries, setCountries] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [countriesPerPage] = useState(5);
+  const [div, setdiv] = useState(false);
 
   useEffect(() => {
     if (remainingSeconds === null) return;
@@ -29,6 +30,7 @@ const Third = () => {
     const maxSeconds = Math.min(parseInt(seconds), 10);
     setRemainingSeconds(maxSeconds);
     startCountdown(maxSeconds);
+    setdiv(true);
   };
 
   let countdown;
@@ -68,7 +70,7 @@ const Third = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-   function prevpage(){
+  function prevpage(){
       if(currentPage !== indexOfFirstCountries){
         setCurrentPage(currentPage-1);
       }
@@ -96,16 +98,24 @@ const Third = () => {
         <p className="timeremain">{remainingSeconds}</p>
       )}
       <div className="grid-container">
+        {(div) ?
+        <div>
         {currentCountries.map((country) => (
           <div key={country.country_id} className="card">
             <p>{country.country_name}</p>
           </div>
         ))}
-       
+        <div>
+            <button onClick={prevpage} className="btn">Prev</button>
+            <button onClick={nextpage} className="btn">Next</button>
+          </div>
+        
+         </div>:<div>
+          
+         </div>
+          }
       </div>
-       <button onClick={prevpage}>Prev</button>
-        <button onClick={nextpage}>Next</button>
-      
+          
       </div>
     </section>
   );
