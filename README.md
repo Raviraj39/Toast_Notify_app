@@ -35,13 +35,12 @@ To use this library in your project, follow these steps:
 
 ### Usage:
 1. Component1
-
 This component demonstrates triggering a default toast notification on button click.
+
 2. Component2
-
 This component demonstrates triggering a custom toast notification with content from an input field.
-3. Component3
 
+4. Component3
 This component demonstrates triggering a toast notification with a countdown timer, followed by an API call to fetch a list of countries.
 
 ### Dependencies
